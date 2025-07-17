@@ -1,12 +1,18 @@
+import { cardList } from "../../../data";
 import Card from "../Card/Card";
-const Column = ({title}) => {
+import CardLoader from "../CardLoader/CardLoader";
+const Column = ({ title, loading }) => {
   return (
     <div className="main__column">
       <div className="column__title">
         <p>{title}</p>
       </div>
       <div className="cards">
-        <Card />
+        {cardList
+          .filter((item) => item.status === title)
+          .map((item, id) =>
+            loading ? <CardLoader tem={item} key={id} /> : <Card item={item} key={id} />
+          )}
       </div>
     </div>
   );

@@ -1,10 +1,16 @@
-const Card = () => {
+const Card = ({ item }) => {
+  const topicColors = {
+    "Web Design": "_orange",
+    Reserch: "_green",
+    Copywriting: "_purple",
+  };
+  const topicColor = topicColors[item.topic] || "gray";
   return (
-    <div className="cards__item">
+    <div className="cards__item" id={item.id}>
       <div className="cards__card card">
         <div className="card__group">
-          <div className="card__theme _green">
-            <p className="_green">Research</p>
+          <div className={`card__theme ${topicColor}`}>
+            <p className={`${topicColor}`}>{item.topic}</p>
           </div>
           <a href="#popBrowse" target="_self">
             <div className="card__btn">
@@ -16,7 +22,7 @@ const Card = () => {
         </div>
         <div className="card__content">
           <a href="" target="_blank">
-            <h3 className="card__title">Название задачи</h3>
+            <h3 className="card__title">{item.title}</h3>
           </a>
           <div className="card__date">
             <svg
