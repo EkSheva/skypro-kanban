@@ -1,7 +1,6 @@
 import PopUser from "../PopUser/PopUser";
 
 const Header = ({ isModalOpen, toggleModal }) => {
-
   return (
     <header className="header">
       <div className="container">
@@ -20,11 +19,7 @@ const Header = ({ isModalOpen, toggleModal }) => {
             <button className="header__btn-main-new _hover01" id="btnMainNew">
               <a href="#popNewCard">Создать новую задачу</a>
             </button>
-            <a
-              href="#user-set-target"
-              className="header__user _hover02"
-              onClick={toggleModal}
-            >
+            <a className="header__user _hover02" onClick={toggleModal}>
               Ivan Ivanov
             </a>
             {isModalOpen ? <PopUser isModalOpen={isModalOpen} /> : null}

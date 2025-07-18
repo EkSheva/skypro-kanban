@@ -14,13 +14,9 @@ const Main = ({ loading }) => {
       <div className="container">
         <div className="main__block">
           <div className="main__content">
-            {columnTitles.map((title, index) =>
-              loading ? (
-                <Loader key={index} />
-              ) : (
-                <Column loading={loading} key={index} title={title} />
-              )
-            )}
+            {columnTitles.map((title, index) => (
+              <Column loading={loading} key={index} title={title} />
+            ))}
           </div>
         </div>
       </div>

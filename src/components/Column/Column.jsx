@@ -10,8 +10,12 @@ const Column = ({ title, loading }) => {
       <div className="cards">
         {cardList
           .filter((item) => item.status === title)
-          .map((item, id) =>
-            loading ? <CardLoader tem={item} key={id} /> : <Card item={item} key={id} />
+          .map((item) =>
+            loading ? (
+              <CardLoader key={item.id} />
+            ) : (
+              <Card item={item} key={item.id} />
+            )
           )}
       </div>
     </div>
