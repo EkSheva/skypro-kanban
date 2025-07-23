@@ -1,5 +1,6 @@
 import Column from "../Column/Column";
-import Loader from "../Loader/Loader";
+import { SContainer } from "../Header/Header.styled";
+import { SMain, MainBlock, MainContent } from "./Main.styled";
 
 const Main = ({ loading }) => {
   const columnTitles = [
@@ -10,17 +11,17 @@ const Main = ({ loading }) => {
     "Готово",
   ];
   return (
-    <main className="main">
-      <div className="container">
-        <div className="main__block">
-          <div className="main__content">
+    <SMain>
+      <SContainer>
+        <MainBlock>
+          <MainContent>
             {columnTitles.map((title, index) => (
               <Column loading={loading} key={index} title={title} />
             ))}
-          </div>
-        </div>
-      </div>
-    </main>
+          </MainContent>
+        </MainBlock>
+      </SContainer>
+    </SMain>
   );
 };
 
