@@ -1,19 +1,14 @@
-const Loader = ({
-  width = 220,
-  height = 130,
-  borderRadius = 0,
-  marginBottom = 15,
-}) => {
+import { SLoader } from "./Loader.styled";
+
+const Loader = ({ width = 220, height = 130, borderRadius = 0 }) => {
   return (
-    <div
-      className="loader"
+    <SLoader
       style={{
         width: width + "px",
         height: height + "px",
         borderRadius: borderRadius + "px",
-        marginBottom: marginBottom + "px",
       }}
-    ></div>
+    ></SLoader>
   );
 };
 export default Loader;
