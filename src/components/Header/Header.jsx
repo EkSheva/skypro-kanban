@@ -1,32 +1,41 @@
+import Button from "../Button/Button";
 import PopUser from "../PopUser/PopUser";
+import {
+  Dark,
+  SHeader,
+  SContainer,
+  HeaderBlock,
+  HeaderLogo,
+  HeaderNav,
+  Img,
+  HeaderUser,
+} from "./Header.styled";
 
 const Header = ({ isModalOpen, toggleModal }) => {
   return (
-    <header className="header">
-      <div className="container">
-        <div className="header__block">
-          <div className="header__logo _show _light">
+    <SHeader>
+      <SContainer>
+        <HeaderBlock>
+          <HeaderLogo>
             <a href="" target="_self">
-              <img src="../images/logo.png" alt="logo" />
+              <Img src="../images/logo.png" alt="logo" />
             </a>
-          </div>
-          <div className="header__logo _dark">
-            <a href="" target="_self">
-              <img src="../images/logo_dark.png" alt="logo" />
-            </a>
-          </div>
-          <nav className="header__nav">
-            <button className="header__btn-main-new _hover01" id="btnMainNew">
-              <a href="#popNewCard">Создать новую задачу</a>
-            </button>
-            <a className="header__user _hover02" onClick={toggleModal}>
-              Ivan Ivanov
-            </a>
+          </HeaderLogo>
+          <HeaderLogo>
+            <Dark>
+              <a href="" target="_self">
+                <Img src="../images/logo_dark.png" alt="logo" />
+              </a>
+            </Dark>
+          </HeaderLogo>
+          <HeaderNav>
+            <Button text="Создать новую задачу" />
+            <HeaderUser onClick={toggleModal}>Ivan Ivanov</HeaderUser>
             {isModalOpen ? <PopUser isModalOpen={isModalOpen} /> : null}
-          </nav>
-        </div>
-      </div>
-    </header>
+          </HeaderNav>
+        </HeaderBlock>
+      </SContainer>
+    </SHeader>
   );
 };
 
