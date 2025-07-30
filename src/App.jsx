@@ -1,5 +1,6 @@
-// import { cardList } from "../data";
 import "./App.css";
+import GlobalStyle from "./GlobalStyles/GlobalStyles.styled";
+import { Wrapper } from "./Wrapper.styled";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import PopBrowse from "./components/PopBrowse/PopBrowse";
@@ -23,13 +24,16 @@ function App() {
   }, []);
 
   return (
-    <div className="wrapper">
-      <PopExit />
-      <PopNewCard />
-      <PopBrowse />
-      <Header isModalOpen={isModalOpen} toggleModal={toggleModal}/>
-      <Main loading={loading} />
-    </div>
+    <>
+      <GlobalStyle />
+      <Wrapper>
+        <PopExit />
+        <PopNewCard />
+        <PopBrowse />
+        <Header isModalOpen={isModalOpen} toggleModal={toggleModal} />
+        <Main loading={loading} />
+      </Wrapper>
+    </>
   );
 }
 

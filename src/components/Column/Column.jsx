@@ -1,13 +1,14 @@
 import { cardList } from "../../../data";
 import Card from "../Card/Card";
 import CardLoader from "../CardLoader/CardLoader";
+import { Cards, ColumnTitle, MainColumn, PTitle } from "./Column.styled";
 const Column = ({ title, loading }) => {
   return (
-    <div className="main__column">
-      <div className="column__title">
-        <p>{title}</p>
-      </div>
-      <div className="cards">
+    <MainColumn>
+      <ColumnTitle>
+        <PTitle>{title}</PTitle>
+      </ColumnTitle>
+      <Cards>
         {cardList
           .filter((item) => item.status === title)
           .map((item) =>
@@ -17,8 +18,8 @@ const Column = ({ title, loading }) => {
               <Card item={item} key={item.id} />
             )
           )}
-      </div>
-    </div>
+      </Cards>
+    </MainColumn>
   );
 };
 
