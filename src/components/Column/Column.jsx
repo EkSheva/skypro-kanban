@@ -1,4 +1,4 @@
-import { cardList } from "../../../data";
+import { cardList } from "../../mock/data";
 import Card from "../Card/Card";
 import CardLoader from "../CardLoader/CardLoader";
 import { Cards, ColumnTitle, MainColumn, PTitle } from "./Column.styled";

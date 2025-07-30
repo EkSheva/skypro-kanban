@@ -12,6 +12,13 @@ export const SCardLoader = styled.div`
   justify-content: stretch;
   padding: 15px 13px 19px;
   margin-bottom: 10px;
+    @media screen and (max-width: 1200px) {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: stretch;
+  }
 `;
 
 export const LCardTheme = styled.div`

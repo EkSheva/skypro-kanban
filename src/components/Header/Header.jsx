@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Button from "../Button/Button";
 import PopUser from "../PopUser/PopUser";
 import {
@@ -29,7 +30,10 @@ const Header = ({ isModalOpen, toggleModal }) => {
             </Dark>
           </HeaderLogo>
           <HeaderNav>
-            <Button text="Создать новую задачу" />
+            <Link to="/card/add">
+              {" "}
+              <Button text="Создать новую задачу" />
+            </Link>
             <HeaderUser onClick={toggleModal}>Ivan Ivanov</HeaderUser>
             {isModalOpen ? <PopUser isModalOpen={isModalOpen} /> : null}
           </HeaderNav>

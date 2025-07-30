@@ -1,17 +1,47 @@
 import Calendar from "../Calendar/Calendar";
+import { useNavigate, useParams } from "react-router-dom";
 
-const PopBrowse = () => {
+import { cardList } from "../../mock/data";
+
+import Card from "../Card/Card";
+import { useMemo } from "react";
+import {
+  PopBrowseBlock,
+  PopBrowseContainer,
+  PopBrowseContent,
+  PopBrowseWrap,
+  SPopBrowse,
+} from "./PopBrowse.styled";
+export const PopBrowse = () => {
+  const navigate = useNavigate();
+  const { id } = useParams();
+
+  const card = useMemo(() => {
+
+    if (!id) {
+      return null;
+    }
+    return cardList.find((card) => card.id === id);
+  }, [id]); 
+
+  if (!card) {
+    return null;
+  }
+
+  const handleClose = () => navigate("/");
+
   return (
-    <div className="pop-browse" id="popBrowse">
-      <div className="pop-browse__container">
-        <div className="pop-browse__block">
-          <div className="pop-browse__content">
-            <div className="pop-browse__top-block">
-              <h3 className="pop-browse__ttl">Название задачи</h3>
+    <SPopBrowse>
+      <PopBrowseContainer>
+        <PopBrowseBlock>
+          <PopBrowseContent>
+            <Card card={card} open={true} />
+            {/* <div className="pop-browse__top-block">
+              <h3 className="pop-browse__ttl">{card.title}</h3>
               <div className="categories__theme theme-top _orange _active-category">
-                <p className="_orange">Web Design</p>
+                <p className="_orange">{card.topic}</p>
               </div>
-            </div>
+            </div> */}
             <div className="pop-browse__status status">
               <p className="status__p subttl">Статус</p>
               <div className="status__themes">
@@ -32,7 +62,7 @@ const PopBrowse = () => {
                 </div>
               </div>
             </div>
-            <div className="pop-browse__wrap">
+            <PopBrowseWrap>
               <form
                 className="pop-browse__form form-browse"
                 id="formBrowseCard"
@@ -52,7 +82,7 @@ const PopBrowse = () => {
                 </div>
               </form>
               <Calendar />
-            </div>
+            </PopBrowseWrap>
             <div className="theme-down__categories theme-down">
               <p className="categories__p subttl">Категория</p>
               <div className="categories__theme _orange _active-category">
@@ -87,14 +117,17 @@ const PopBrowse = () => {
                   <a href="#">Удалить задачу</a>
                 </button>
               </div>
-              <button className="btn-edit__close _btn-bg _hover01">
+              <button
+                className="btn-edit__close _btn-bg _hover01"
+                onClick={handleClose}
+              >
                 <a href="#">Закрыть</a>
               </button>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          </PopBrowseContent>
+        </PopBrowseBlock>
+      </PopBrowseContainer>
+    </SPopBrowse>
   );
 };
 
