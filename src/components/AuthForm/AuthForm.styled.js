@@ -65,7 +65,7 @@ export const FormGroupP = styled.div`
   text-align: center;
 `;
 
-export const FormGroupPLink = styled.div`
+export const FormGroupPLink = styled.p`
   font-weight: 400;
   font-size: 14px;
   line-height: 150%;
