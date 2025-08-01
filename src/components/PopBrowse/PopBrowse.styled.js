@@ -247,7 +247,7 @@ export const FormBrowseArea = styled.textarea`
   color: #94a6be;
   letter-spacing: -0.14px;
 }
-&::placeholder {
+  &::placeholder {
   font-weight: 400;
   font-size: 14px;
   line-height: 1px;
@@ -295,4 +295,8 @@ export const BtnBgA = styled.a`
  color: #ffffff;
 `;
 
+export const Gray = styled.div`
+  background: #94a6be;
+  color: #ffffff;
+`;
 

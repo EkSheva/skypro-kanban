@@ -1,4 +1,5 @@
 // import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Calendar from "../Calendar/Calendar";
 import {
   ActiveCategory,
@@ -24,10 +25,10 @@ import {
   SPopNewCard,
 } from "./PopNewCard.styled";
 
-const PopNewCard = ({ onClose }) => {
-  
+const PopNewCard = () => {
+  const navigate = useNavigate();
   const handleClose = () => {
-    onClose(); 
+    navigate("/");
   };
 
   return (
@@ -69,10 +70,9 @@ const PopNewCard = ({ onClose }) => {
                 <Subttl>Категория</Subttl>
               </CategoriesP>
               <CategoriesThemes>
-                {" "}
                 <CategoriesTheme $background="#ffe4c2">
                   <CategoriesThemeP $color="#ff6d00">
-                    <ActiveCategory>Web Design</ActiveCategory>
+                    Web Design
                   </CategoriesThemeP>
                 </CategoriesTheme>
                 <CategoriesTheme $background="#b4fdd1">

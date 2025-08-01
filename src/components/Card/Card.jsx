@@ -34,8 +34,8 @@ const topicColors = {
   },
 };
 
-const Card = ({ item, open, card }) => {
-  const topicStyle = topicColors[item.topic] || {
+const Card = ({ open, card }) => {
+  const topicStyle = topicColors[card?.topic] || {
     background: "#94a6be",
     color: "#ffffff",
   };
@@ -55,12 +55,12 @@ const Card = ({ item, open, card }) => {
         </PopBrowseTopBlock>
       ) : (
         <>
-          <CardsItem id={item.id}>
+          <CardsItem id={card?.id}>
             <CardsCard>
               <CardGroup>
                 <CardTheme $background={topicStyle.background}>
                   <CardThemeP $color={topicStyle.color}>
-                    {item.topic}
+                    {card?.topic}
                   </CardThemeP>
                 </CardTheme>
                 <Link to={"/card/" + card?.id}>
@@ -73,7 +73,7 @@ const Card = ({ item, open, card }) => {
               </CardGroup>
               <CardContent>
                 <a href="" target="_blank">
-                  <CardTitle>{item.title}</CardTitle>
+                  <CardTitle>{card?.title}</CardTitle>
                 </a>
                 <Date />
               </CardContent>

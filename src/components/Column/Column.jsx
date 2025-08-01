@@ -10,12 +10,12 @@ const Column = ({ title, loading }) => {
       </ColumnTitle>
       <Cards>
         {cardList
-          .filter((item) => item.status === title)
-          .map((item) =>
+          .filter((card) => card.status === title)
+          .map((card) =>
             loading ? (
-              <CardLoader key={item.id} />
+              <CardLoader key={card.id} />
             ) : (
-              <Card item={item} key={item.id} />
+              <Card card={card} key={card.id} />
             )
           )}
       </Cards>
