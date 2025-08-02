@@ -11,51 +11,137 @@ import {
   FormGroupPLink,
 } from "./AuthForm.styled";
 import BaseButton from "../BaseButton/BaseButton";
+import { useState } from "react";
+import { signIn, signUp } from "../../services/auth";
 
 const AuthForm = ({ isSignUp, setIsAuth }) => {
   const navigate = useNavigate();
-  const handleLogin = (e) => {
-    e.preventDefault();
-    setIsAuth(true);
-    navigate("/");
+
+  // состояние полей
+  const [formData, setFormData] = useState({
+    name: "",
+    login: "",
+    password: "",
+  });
+
+  // состояние ошибок
+  const [errors, setErrors] = useState({
+    name: "",
+    login: "",
+    password: "",
+  });
+
+  // состояние текста ошибки, чтобы показать её пользователю
+  const [error, setError] = useState("");
+
+  // функция валидации
+  const validateForm = () => {
+    const newErrors = { name: "", login: "", password: "" };
+    let isValid = true;
+
+    if (isSignUp && !formData.name.trim()) {
+      newErrors.name = true;
+      setError("Заполните все поля");
+      isValid = false;
+    }
+
+    if (!formData.login.trim()) {
+      newErrors.login = true;
+      setError("Заполните все поля");
+      isValid = false;
+    }
+
+    if (!formData.password.trim()) {
+      newErrors.password = true;
+      setError("Заполните все поля");
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
   };
+
+  // функция, которая отслеживает в полях изменения
+  // и меняет состояние компонента
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+    setErrors({ ...errors, [name]: false });
+    setError("");
+  };
+
+  // функция отправки формы
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!validateForm()) {
+      // если у нас форма не прошла валидацию, то дальше не продолжаем
+      return;
+    }
+    try {
+      // чтобы не писать две разных функции, выберем нужный запрос через
+      // тернарный оператор
+      const data = !isSignUp
+        ? await signIn({ login: formData.login, password: formData.password })
+        : await signUp(formData);
+
+      if (data) {
+        setIsAuth(true);
+        localStorage.setItem("userInfo", JSON.stringify(data));
+        navigate("/");
+      }
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  // const handleLogin = (e) => {
+  //   e.preventDefault();
+  //   setIsAuth(true);
+  //   navigate("/");
+  // };
   return (
     <Bg>
       <Modal>
         <FWrapper>
           <FTitle>{isSignUp ? "Регистрация" : "Вход"}</FTitle>
-          <Form id="form" onSubmit={handleLogin}>
+          <Form id="form" onSubmit={handleSubmit}>
             <InputWrapper>
               {isSignUp && (
                 <Input
-                  tag="input"
+                  error={errors.name}
                   type="text"
                   name="name"
                   id="formname"
                   placeholder="Имя"
-                  autoСomplete="name"
+                  value={formData.name}
+                  onChange={handleChange}
                 />
               )}
               <Input
-                tag="input"
+                error={errors.login}
                 type="text"
                 name="login"
                 id="formlogin"
                 placeholder="Эл. почта"
-                autoСomplete="email"
+                value={formData.login}
+                onChange={handleChange}
               />
               <Input
-                tag="input"
+                error={errors.password}
                 type="password"
                 name="password"
                 id="formpassword"
                 placeholder="Пароль"
-                autoСomplete="current-password"
+                value={formData.password}
+                onChange={handleChange}
               />
             </InputWrapper>
 
             <BaseButton
-              onClick={handleLogin}
+              onClick={handleSubmit}
               type="submit"
               text={isSignUp ? "Зарегистрироваться" : "Войти"}
             />
