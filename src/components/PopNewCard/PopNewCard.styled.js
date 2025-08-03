@@ -71,6 +71,9 @@ export const PopNewCardClose = styled.button`
   top: 20px;
   right: 30px;
   color: #94a6be;
+  background-color: inherit;
+  border: none;
+  outline: none;
   cursor: pointer;
   &:hover {
   color: #000000;

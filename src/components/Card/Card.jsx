@@ -46,11 +46,11 @@ const Card = ({ open, card }) => {
         <PopBrowseTopBlock>
           <PopBrowseTtl>{card?.title}</PopBrowseTtl>
           <Categories>
-            <CategoriesTheme $background={topicStyle.background}>
+            <CardTheme $background={topicStyle.background}>
               <ActiveCategory>
                 <CardThemeP $color={topicStyle.color}>{card?.topic}</CardThemeP>
               </ActiveCategory>
-            </CategoriesTheme>
+            </CardTheme>
           </Categories>
         </PopBrowseTopBlock>
       ) : (

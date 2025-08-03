@@ -128,10 +128,11 @@ export const StatusThemes = styled.div`
 export const StatusTheme = styled.div`
   border-radius: 24px;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
-  color: #94a6be;
+  background-color: #94a6be;
   padding: 11px 14px 10px;
   margin-right: 7px;
   margin-bottom: 7px;
+  margin-top:14px;
 `;
 
 export const StatusThemeP = styled.p`
@@ -145,6 +146,10 @@ export const Subttl = styled.p`
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
+`;
+
+export const StatusSubttlP = styled(Subttl)`
+  ${StatusThemeP}; 
 `;
 
 export const Hide = styled.div`
@@ -195,6 +200,10 @@ export const PopBrowseBtnEdit = styled.button`
   margin-bottom: 10px;
   padding: 0 14px;
    margin-right: 8px;
+   &:hover {
+  background-color: #33399b;
+  color: #ffffff;
+}
      @media screen and (max-width: 495px) {
     width: 100%;
     height: 40px;
@@ -295,8 +304,7 @@ export const BtnBgA = styled.a`
  color: #ffffff;
 `;
 
-export const Gray = styled.div`
+export const Gray = styled.p`
   background: #94a6be;
   color: #ffffff;
 `;
-
