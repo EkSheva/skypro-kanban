@@ -12,9 +12,9 @@ import {
   CardTitle,
 } from "./Card.styled";
 import {
-  ActiveCategory,
   Categories,
-  CategoriesTheme,
+  CategoriesThemeActive,
+  CategoriesThemeP,
   PopBrowseTopBlock,
   PopBrowseTtl,
 } from "../PopBrowse/PopBrowse.styled";
@@ -46,11 +46,11 @@ const Card = ({ open, card }) => {
         <PopBrowseTopBlock>
           <PopBrowseTtl>{card?.title}</PopBrowseTtl>
           <Categories>
-            <CardTheme $background={topicStyle.background}>
-              <ActiveCategory>
-                <CardThemeP $color={topicStyle.color}>{card?.topic}</CardThemeP>
-              </ActiveCategory>
-            </CardTheme>
+            <CategoriesThemeActive $background={topicStyle.background}>
+              <CategoriesThemeP $color={topicStyle.color}>
+                {card?.topic}
+              </CategoriesThemeP>
+            </CategoriesThemeActive>
           </Categories>
         </PopBrowseTopBlock>
       ) : (

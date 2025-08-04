@@ -159,7 +159,7 @@ export const FormNewArea = styled.textarea`
   line-height: 1px;
   color: #94a6be;
   letter-spacing: -0.14px;
-  }
+}
 @media screen and (max-width: 495px) {
     max-width: 100%;
     height: 34px;
