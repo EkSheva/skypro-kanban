@@ -104,7 +104,7 @@ export const ActiveCategory = styled.p`
 `;
 
 export const CategoriesThemeActive = styled.div`
- display: inline-block;
+  display: inline-block;
   width: auto;
   height: 30px;
   padding: 8px 20px;
@@ -198,8 +198,6 @@ export const PopBrowseBtnBrowse = styled.div`
   justify-content: space-between;
   height: 30px;
   margin-bottom: 10px;
-  padding: 0 14px;
-  margin-right: 8px;
     @media screen and (max-width: 495px) {
     width: 100%;
     height: 40px;
@@ -212,10 +210,10 @@ export const PopBrowseBtnEdit = styled.button`
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
-   height: 30px;
+  height: 30px;
   margin-bottom: 10px;
   padding: 0 14px;
-   margin-right: 8px;
+  margin-right: 8px;
    &:hover {
   background-color: #33399b;
   color: #ffffff;
@@ -306,8 +304,11 @@ export const BtnBor = styled.button`
 }
 `;
 
-export const BtnBorA = styled.a`
-color: #565eef;
+export const BtnBorA = styled.p`
+  color: #565eef;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
   &:hover {
   color: #ffffff;
 }
@@ -317,7 +318,7 @@ export const BtnBg = styled.button`
   height: 30px;
   margin-bottom: 10px;
   padding: 0 14px;
-  margin-right: 8px;
+  margin-right: 0px;
     @media screen and (max-width: 495px) {
     width: 100%;
     height: 40px;
@@ -333,7 +334,10 @@ export const BtnBg = styled.button`
 }
 `;
 
-export const BtnBgA = styled.a`
+export const BtnBgA = styled.p`
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
  color: #ffffff;
 `;
 
