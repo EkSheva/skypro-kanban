@@ -13,6 +13,7 @@ import {
 import BaseButton from "../BaseButton/BaseButton";
 import { useState } from "react";
 import { signIn, signUp } from "../../services/auth";
+import { ErrorP } from "../Input/Input.styled";
 
 const AuthForm = ({ isSignUp, setIsAuth }) => {
   const navigate = useNavigate();
@@ -41,19 +42,25 @@ const AuthForm = ({ isSignUp, setIsAuth }) => {
 
     if (isSignUp && !formData.name.trim()) {
       newErrors.name = true;
-      setError("Заполните все поля");
+      setError(
+        "Введенные вами данные не корректны. Чтобы завершить регистрацию, введите данные корректно и повторите попытку."
+      );
       isValid = false;
     }
 
     if (!formData.login.trim()) {
       newErrors.login = true;
-      setError("Заполните все поля");
+      setError(
+        "Введенные вами данные не корректны. Чтобы завершить регистрацию, введите данные корректно и повторите попытку."
+      );
       isValid = false;
     }
 
     if (!formData.password.trim()) {
       newErrors.password = true;
-      setError("Заполните все поля");
+      setError(
+        "Введенные вами данные не корректны. Чтобы завершить регистрацию, заполните все поля в форме."
+      );
       isValid = false;
     }
 
@@ -97,11 +104,6 @@ const AuthForm = ({ isSignUp, setIsAuth }) => {
     }
   };
 
-  // const handleLogin = (e) => {
-  //   e.preventDefault();
-  //   setIsAuth(true);
-  //   navigate("/");
-  // };
   return (
     <Bg>
       <Modal>
@@ -139,7 +141,7 @@ const AuthForm = ({ isSignUp, setIsAuth }) => {
                 onChange={handleChange}
               />
             </InputWrapper>
-
+            <ErrorP>{error}</ErrorP>
             <BaseButton
               onClick={handleSubmit}
               type="submit"
