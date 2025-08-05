@@ -1,4 +1,5 @@
 import Date from "../Date/Date/Date";
+import { Link } from "react-router-dom";
 import {
   CardBtn,
   CardBtnDiv,
@@ -10,13 +11,20 @@ import {
   CardThemeP,
   CardTitle,
 } from "./Card.styled";
+import {
+  Categories,
+  CategoriesThemeActive,
+  CategoriesThemeP,
+  PopBrowseTopBlock,
+  PopBrowseTtl,
+} from "../PopBrowse/PopBrowse.styled";
 
 const topicColors = {
   "Web Design": {
     background: "#ffe4c2",
     color: "#ff6d00",
   },
-  Reserch: {
+  Research: {
     background: "#b4fdd1",
     color: "#06b16e",
   },
@@ -26,35 +34,54 @@ const topicColors = {
   },
 };
 
-const Card = ({ item }) => {
-  const topicStyle = topicColors[item.topic] || {
+const Card = ({ open, card }) => {
+  const topicStyle = topicColors[card?.topic] || {
     background: "#94a6be",
     color: "#ffffff",
   };
 
   return (
-    <CardsItem id={item.id}>
-      <CardsCard>
-        <CardGroup>
-          <CardTheme $background={topicStyle.background}>
-            <CardThemeP $color={topicStyle.color}>{item.topic}</CardThemeP>
-          </CardTheme>
-          <a href="#popBrowse" target="_self">
-            <CardBtn>
-              <CardBtnDiv></CardBtnDiv>
-              <CardBtnDiv></CardBtnDiv>
-              <CardBtnDiv></CardBtnDiv>
-            </CardBtn>
-          </a>
-        </CardGroup>
-        <CardContent>
-          <a href="" target="_blank">
-            <CardTitle>{item.title}</CardTitle>
-          </a>
-          <Date />
-        </CardContent>
-      </CardsCard>
-    </CardsItem>
+    <>
+      {open ? (
+        <PopBrowseTopBlock>
+          <PopBrowseTtl>{card?.title}</PopBrowseTtl>
+          <Categories>
+            <CategoriesThemeActive $background={topicStyle.background}>
+              <CategoriesThemeP $color={topicStyle.color}>
+                {card?.topic}
+              </CategoriesThemeP>
+            </CategoriesThemeActive>
+          </Categories>
+        </PopBrowseTopBlock>
+      ) : (
+        <>
+          <CardsItem id={card?.id}>
+            <CardsCard>
+              <CardGroup>
+                <CardTheme $background={topicStyle.background}>
+                  <CardThemeP $color={topicStyle.color}>
+                    {card?.topic}
+                  </CardThemeP>
+                </CardTheme>
+                <Link to={"/card/" + card?.id}>
+                  <CardBtn>
+                    <CardBtnDiv></CardBtnDiv>
+                    <CardBtnDiv></CardBtnDiv>
+                    <CardBtnDiv></CardBtnDiv>
+                  </CardBtn>
+                </Link>
+              </CardGroup>
+              <CardContent>
+                <a href="" target="_blank">
+                  <CardTitle>{card?.title}</CardTitle>
+                </a>
+                <Date />
+              </CardContent>
+            </CardsCard>
+          </CardsItem>
+        </>
+      )}
+    </>
   );
 };
 

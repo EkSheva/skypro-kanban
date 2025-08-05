@@ -1,4 +1,4 @@
-import { cardList } from "../../../data";
+import { cardList } from "../../mock/data";
 import Card from "../Card/Card";
 import CardLoader from "../CardLoader/CardLoader";
 import { Cards, ColumnTitle, MainColumn, PTitle } from "./Column.styled";
@@ -10,12 +10,12 @@ const Column = ({ title, loading }) => {
       </ColumnTitle>
       <Cards>
         {cardList
-          .filter((item) => item.status === title)
-          .map((item) =>
+          .filter((card) => card.status === title)
+          .map((card) =>
             loading ? (
-              <CardLoader key={item.id} />
+              <CardLoader key={card.id} />
             ) : (
-              <Card item={item} key={item.id} />
+              <Card card={card} key={card.id} />
             )
           )}
       </Cards>
