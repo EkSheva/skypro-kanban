@@ -71,6 +71,9 @@ export const PopNewCardClose = styled.button`
   top: 20px;
   right: 30px;
   color: #94a6be;
+  background-color: inherit;
+  border: none;
+  outline: none;
   cursor: pointer;
   &:hover {
   color: #000000;
@@ -156,7 +159,7 @@ export const FormNewArea = styled.textarea`
   line-height: 1px;
   color: #94a6be;
   letter-spacing: -0.14px;
-  }
+}
 @media screen and (max-width: 495px) {
     max-width: 100%;
     height: 34px;

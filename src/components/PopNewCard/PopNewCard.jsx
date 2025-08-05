@@ -1,15 +1,13 @@
-// import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Calendar from "../Calendar/Calendar";
 import {
-  ActiveCategory,
   Categories,
-  CategoriesP,
+  CategoriesPSubttl,
   CategoriesTheme,
+  CategoriesThemeActive,
   CategoriesThemeP,
   CategoriesThemes,
   PopBrowseContainer,
-  Subttl,
 } from "../PopBrowse/PopBrowse.styled";
 import {
   FormNewArea,
@@ -57,7 +55,9 @@ const PopNewCard = () => {
                     Описание задачи
                   </label>
                   <FormNewArea
+                    type="text"
                     name="text"
+                    className="subttl"
                     id="textArea"
                     placeholder="Введите описание задачи..."
                   ></FormNewArea>
@@ -66,15 +66,13 @@ const PopNewCard = () => {
               <Calendar />
             </PopNewCardWrap>
             <Categories>
-              <CategoriesP>
-                <Subttl>Категория</Subttl>
-              </CategoriesP>
+              <CategoriesPSubttl>Категория</CategoriesPSubttl>
               <CategoriesThemes>
-                <CategoriesTheme $background="#ffe4c2">
+                <CategoriesThemeActive $background="#ffe4c2">
                   <CategoriesThemeP $color="#ff6d00">
                     Web Design
                   </CategoriesThemeP>
-                </CategoriesTheme>
+                </CategoriesThemeActive>
                 <CategoriesTheme $background="#b4fdd1">
                   <CategoriesThemeP $color="#06b16e">Research</CategoriesThemeP>
                 </CategoriesTheme>

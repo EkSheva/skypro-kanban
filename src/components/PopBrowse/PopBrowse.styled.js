@@ -65,10 +65,6 @@ export const PopBrowseTopBlock = styled.div`
   margin-bottom: 18px;
 `;
 
-export const ActiveCategory = styled.p`
-opacity: 1 !important;
-`;
-
 export const PopBrowseTtl = styled.h3`
   color: #000;
   font-size: 20px;
@@ -99,14 +95,30 @@ export const CategoriesTheme = styled.div`
   padding: 8px 20px;
   border-radius: 24px;
   margin-right: 7px;
+  background-color: ${({ $background }) => $background};
   opacity: 0.4;
-  opacity: 1;
+`;
+
+export const ActiveCategory = styled.p`
+  opacity: 1 !important;
+`;
+
+export const CategoriesThemeActive = styled.div`
+  display: inline-block;
+  width: auto;
+  height: 30px;
+  padding: 8px 20px;
+  border-radius: 24px;
+  margin-right: 7px;
+  background-color: ${({ $background }) => $background};
+ opacity: 1 !important;
 `;
 
 export const CategoriesThemeP = styled.p`
   font-size: 14px;
   font-weight: 600;
   line-height: 14px;
+  color: ${({ $color }) => $color};
   white-space: nowrap;
 `;
 
@@ -128,10 +140,11 @@ export const StatusThemes = styled.div`
 export const StatusTheme = styled.div`
   border-radius: 24px;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
-  color: #94a6be;
-  padding: 11px 14px 10px;
+  background-color: #94a6be;
+  padding: 10px 17.5px 10px;
   margin-right: 7px;
   margin-bottom: 7px;
+  margin-top:14px;
 `;
 
 export const StatusThemeP = styled.p`
@@ -145,6 +158,14 @@ export const Subttl = styled.p`
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
+`;
+
+export const StatusSubttlP = styled(Subttl)`
+  ${StatusThemeP}; 
+`;
+
+export const CategoriesPSubttl = styled(CategoriesP)`
+${Subttl}
 `;
 
 export const Hide = styled.div`
@@ -177,8 +198,6 @@ export const PopBrowseBtnBrowse = styled.div`
   justify-content: space-between;
   height: 30px;
   margin-bottom: 10px;
-  padding: 0 14px;
-  margin-right: 8px;
     @media screen and (max-width: 495px) {
     width: 100%;
     height: 40px;
@@ -191,10 +210,14 @@ export const PopBrowseBtnEdit = styled.button`
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
-   height: 30px;
+  height: 30px;
   margin-bottom: 10px;
   padding: 0 14px;
-   margin-right: 8px;
+  margin-right: 8px;
+   &:hover {
+  background-color: #33399b;
+  color: #ffffff;
+}
      @media screen and (max-width: 495px) {
     width: 100%;
     height: 40px;
@@ -260,8 +283,16 @@ export const FormBrowseArea = styled.textarea`
 }
 `;
 
-
 export const BtnBor = styled.button`
+  height: 30px;
+  margin-bottom: 10px;
+  padding: 0 14px;
+  margin-right: 8px;
+    @media screen and (max-width: 495px) {
+    width: 100%;
+    height: 40px;
+    margin-right: 0px;
+}
   border-radius: 4px;
   border: 0.7px solid var(--palette-navy-60, #565eef);
   outline: none;
@@ -273,14 +304,26 @@ export const BtnBor = styled.button`
 }
 `;
 
-export const BtnBorA = styled.a`
-color: #565eef;
+export const BtnBorA = styled.p`
+  color: #565eef;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
   &:hover {
   color: #ffffff;
 }
 `;
 
 export const BtnBg = styled.button`
+  height: 30px;
+  margin-bottom: 10px;
+  padding: 0 14px;
+  margin-right: 0px;
+    @media screen and (max-width: 495px) {
+    width: 100%;
+    height: 40px;
+    margin-right: 0px;
+}
  border-radius: 4px;
   background: #565eef;
   border: none;
@@ -291,12 +334,14 @@ export const BtnBg = styled.button`
 }
 `;
 
-export const BtnBgA = styled.a`
+export const BtnBgA = styled.p`
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
  color: #ffffff;
 `;
 
-export const Gray = styled.div`
+export const Gray = styled.p`
   background: #94a6be;
   color: #ffffff;
 `;
-
