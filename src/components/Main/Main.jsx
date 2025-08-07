@@ -2,7 +2,7 @@ import Column from "../Column/Column";
 import { SContainer } from "../Header/Header.styled";
 import { SMain, MainBlock, MainContent } from "./Main.styled";
 
-const Main = ({ loading }) => {
+const Main = ({ loading, tasks }) => {
   const columnTitles = [
     "Без статуса",
     "Нужно сделать",
@@ -16,7 +16,7 @@ const Main = ({ loading }) => {
         <MainBlock>
           <MainContent>
             {columnTitles.map((title, index) => (
-              <Column loading={loading} key={index} title={title} />
+              <Column tasks={tasks} loading={loading} key={index} title={title} />
             ))}
           </MainContent>
         </MainBlock>

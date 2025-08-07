@@ -345,3 +345,4 @@ export const Gray = styled.p`
   background: #94a6be;
   color: #ffffff;
 `;
+
