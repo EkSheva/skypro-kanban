@@ -11,13 +11,16 @@ import {
   FormGroupPLink,
 } from "./AuthForm.styled";
 import BaseButton from "../BaseButton/BaseButton";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { signIn, signUp } from "../../services/auth";
 import { ErrorP } from "../Input/Input.styled";
+import { AuthContext } from "../../context/AuthContext";
+import { isValid } from "date-fns";
 
-const AuthForm = ({ isSignUp, setIsAuth }) => {
+const AuthForm = ({ isSignUp }) => {
   const navigate = useNavigate();
-
+  const { updateUserInfo } = useContext(AuthContext);
+  // Получаем setUser из хука useContext
   // состояние полей
   const [formData, setFormData] = useState({
     name: "",
@@ -95,8 +98,7 @@ const AuthForm = ({ isSignUp, setIsAuth }) => {
         : await signUp(formData);
 
       if (data) {
-        setIsAuth(true);
-        localStorage.setItem("userInfo", JSON.stringify(data));
+        updateUserInfo(data);
         navigate("/");
       }
     } catch (err) {
@@ -145,6 +147,7 @@ const AuthForm = ({ isSignUp, setIsAuth }) => {
             <BaseButton
               onClick={handleSubmit}
               type="submit"
+              disabled={!isValid}
               text={isSignUp ? "Зарегистрироваться" : "Войти"}
             />
             {!isSignUp && (
@@ -157,12 +160,10 @@ const AuthForm = ({ isSignUp, setIsAuth }) => {
             )}
             {isSignUp && (
               <FormGroupP>
-                <p>
-                  Уже есть аккаунт?{" "}
-                  <Link to="/sign-in">
-                    <FormGroupPLink>Войдите здесь</FormGroupPLink>
-                  </Link>
-                </p>
+                <p>Уже есть аккаунт?</p>
+                <Link to="/sign-in">
+                  <FormGroupPLink>Войдите здесь</FormGroupPLink>
+                </Link>
               </FormGroupP>
             )}
           </Form>
