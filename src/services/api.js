@@ -33,12 +33,12 @@ export async function postTask({ token, task }) {
 
 // Функция изменения задачи:
 
-export async function editTask({ token, _id, task }) {
+export async function redactTask({ token, _id, task }) {
     try {
         const data = await axios.put(API_URL + _id, task, {
             headers: {
                 Authorization: 'Bearer ' + token,
-                'Content-Type': 'text/html',
+                'Content-Type': '',
             },
         })
         return data.data.tasks

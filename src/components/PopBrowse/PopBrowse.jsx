@@ -32,7 +32,7 @@ import {
 } from "./PopBrowse.styled";
 import { TasksContext } from "../../context/TasksContext";
 import { AuthContext } from "../../context/AuthContext";
-import { deleteTask } from "../../services/api";
+import { deleteTask, redactTask } from "../../services/api";
 
 export const PopBrowse = () => {
   const navigate = useNavigate();
@@ -49,8 +49,6 @@ export const PopBrowse = () => {
     topic: "",
   });
 
-  console.log(_id);
-
   const card = useMemo(() => {
     if (!_id) {
       return null;
@@ -66,9 +64,6 @@ export const PopBrowse = () => {
       }
     );
   }, [_id, tasks]);
-
-  console.log(tasks);
-  console.log(card);
 
   useEffect(() => {
     if (card) {
@@ -108,17 +103,22 @@ export const PopBrowse = () => {
     });
   };
 
-  const saveChanges = async ({ card }) => {
+  const saveChanges = async () => {
+    setLoading(true);
     try {
-      const updateTasks = await editTask({
+      const updateTasks = await redactTask({
         token: user.token,
-        id: card._id,
+        _id: card._id,
         card: editableTask,
       });
+       console.log(card);
       setTasks(updateTasks);
       setIsEditing(false);
     } catch (error) {
       console.error("Ошибка при сохранении изменений:", error.message);
+    
+      } finally {
+      setLoading(false);
     }
   };
 
@@ -188,9 +188,11 @@ export const PopBrowse = () => {
                     name="description"
                     id="description"
                     className="subttl"
-                    value={card?.description}
-                    readOnly
                     placeholder="Введите описание задачи..."
+                    value={editableTask.description || card.description}
+										onChange={handleInputChange}
+										readOnly={!isEditing}
+										$isEditing={isEditing}
                   />
                 </FormBrowseBlock>
               </PopBrowseForm>
@@ -211,7 +213,7 @@ export const PopBrowse = () => {
               )}
               {isEditing && (
                 <BtnGroup>
-                  <BtnBor onClick={saveChanges} disabled={loading}>
+                  <BtnBor onClick={saveChanges}>
                     <BtnBorA>Сохранить</BtnBorA>
                   </BtnBor>
                   <BtnBor>
