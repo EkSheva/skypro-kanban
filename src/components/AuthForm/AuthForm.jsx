@@ -15,7 +15,6 @@ import { useContext, useState } from "react";
 import { signIn, signUp } from "../../services/auth";
 import { ErrorP } from "../Input/Input.styled";
 import { AuthContext } from "../../context/AuthContext";
-import { isValid } from "date-fns";
 
 const AuthForm = ({ isSignUp }) => {
   const navigate = useNavigate();
@@ -147,7 +146,6 @@ const AuthForm = ({ isSignUp }) => {
             <BaseButton
               onClick={handleSubmit}
               type="submit"
-              disabled={!isValid}
               text={isSignUp ? "Зарегистрироваться" : "Войти"}
             />
             {!isSignUp && (

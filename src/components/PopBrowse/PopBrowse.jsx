@@ -9,7 +9,6 @@ import {
   BtnBor,
   BtnBorA,
   BtnGroup,
-  // Categories,
   FormBrowseArea,
   FormBrowseBlock,
   Gray,
@@ -18,17 +17,13 @@ import {
   PopBrowseContainer,
   PopBrowseContent,
   PopBrowseForm,
-  // PopBrowseStatus,
-  // PopBrowseTopBlock,
   PopBrowseWrap,
   SPopBrowse,
   Status,
   StatusSubttlP,
-  // StatusP,
   StatusTheme,
   StatusThemes,
   White,
-  // Subttl,
 } from "./PopBrowse.styled";
 import { TasksContext } from "../../context/TasksContext";
 import { AuthContext } from "../../context/AuthContext";
@@ -88,13 +83,6 @@ export const PopBrowse = () => {
     setIsEditing(true);
   };
 
-  // const handleInputChange = (e, field) => {
-  //   setEditableTask({
-  //     ...editableTask,
-  //     [field]: e.target.value,
-  //   });
-  // };
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setEditableTask({
@@ -109,11 +97,13 @@ export const PopBrowse = () => {
       const updateTasks = await redactTask({
         token: user.token,
         _id: card._id,
-        card: editableTask,
+        task: editableTask,
       });
        console.log(card);
       setTasks(updateTasks);
       setIsEditing(false);
+      handleClose();
+      navigate("/");
     } catch (error) {
       console.error("Ошибка при сохранении изменений:", error.message);
     
@@ -235,15 +225,3 @@ export const PopBrowse = () => {
   );
 };
 export default PopBrowse;
-
-
-  // const updateTasks = async ({ card, _id }) => {
-  //   try {
-  //     const newTasks = await editTask({ token: user?.token, _id, card });
-  //     setTasks(newTasks);
-  //   } catch (error) {
-  //     console.error("Ошибка редактирования задачи", error.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };

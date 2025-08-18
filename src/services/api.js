@@ -49,9 +49,9 @@ export async function redactTask({ token, _id, task }) {
 
 // Функция удаления задачи:
 
-export async function deleteTask({ token, _id }) {
+export async function deleteTask({ token, _id, task }) {
     try {
-        const data = await axios.delete(API_URL + _id, {
+        const data = await axios.delete(API_URL + _id, task,  {
             headers: {
                 Authorization: 'Bearer ' + token,
                 'Content-Type': '',
