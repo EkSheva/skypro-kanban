@@ -361,3 +361,4 @@ export const White = styled.div`
   background: #ffffff;
   color: #94a6be;
 `;
+
