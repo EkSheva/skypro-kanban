@@ -16,9 +16,9 @@ const Column = ({ title }) => {
           .filter((card) => card.status === title)
           .map((card) =>
             loading ? (
-              <CardLoader key={card._id} />
+              <CardLoader key={card?._id} />
             ) : (
-              <Card card={card} key={card._id} />
+              <Card card={card} key={card?._id} />
             )
           )}
       </Cards>

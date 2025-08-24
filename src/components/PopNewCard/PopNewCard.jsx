@@ -7,6 +7,7 @@ import {
   CategoriesThemeP,
   CategoriesThemes,
   PopBrowseContainer,
+  Subttl,
 } from "../PopBrowse/PopBrowse.styled";
 import {
   FormNewArea,
@@ -32,7 +33,7 @@ const categories = [
   { name: "Copywriting", background: "#e9d4ff", color: "#9a48f1" },
 ];
 
-const PopNewCard = () => {
+const PopNewCard = ({selected}) => {
   const { tasks, setTasks } = useContext(TasksContext);
   const [loading, setLoading] = useState(false);
   // const [error, setError] = useState("");
@@ -43,6 +44,8 @@ const PopNewCard = () => {
     title: "",
     description: "",
     topic: "Research",
+    status: "Без статуса",
+    date: null,
   });
 
   // состояние ошибок
@@ -50,6 +53,7 @@ const PopNewCard = () => {
     title: "",
     description: "",
     topic: "",
+    date: ""
   });
 
   const handleChange = (e) => {
@@ -94,9 +98,7 @@ const PopNewCard = () => {
             <PopNewCardWrap>
               <PopNewCardForm onSubmit={addNewTask}>
                 <FormNewBlock>
-                  <label htmlFor="formTitle" className="subttl">
-                    Название задачи
-                  </label>
+                  <Subttl>Название задачи</Subttl>
                   <FormNewInput
                     type="text"
                     name="title"
@@ -108,9 +110,7 @@ const PopNewCard = () => {
                   />
                 </FormNewBlock>
                 <FormNewBlock>
-                  <label htmlFor="textArea" className="subttl">
-                    Описание задачи
-                  </label>
+                  <Subttl>Описание задачи</Subttl>
                   <FormNewArea
                     type="text"
                     name="description"
@@ -122,7 +122,13 @@ const PopNewCard = () => {
                   ></FormNewArea>
                 </FormNewBlock>
               </PopNewCardForm>
-              <Calendar />
+              <Calendar
+                name="date"
+                selected={selected}
+                value={formData.date}
+                setSelected={(date) => setTasks({ ...formData, date })}
+                onChange={handleChange}
+              />
             </PopNewCardWrap>
             <Categories>
               <CategoriesPSubttl>Категория</CategoriesPSubttl>
