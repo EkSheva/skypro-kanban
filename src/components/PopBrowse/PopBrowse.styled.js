@@ -362,3 +362,5 @@ export const White = styled.div`
   color: ${(props) => (props.$isActive ? "#ffffff" : "#94a6be")};
   background: ${(props) => (props.$isActive ? "#94a6be" : "#ffffff")};
 `;
+
+
