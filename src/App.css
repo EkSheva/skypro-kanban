@@ -193,3 +193,25 @@
     width: 100%;
   }
 }
+
+.subttl{
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.pop-browse__content .categories__theme {
+  opacity: 1;
+}
+.pop-browse__content .theme-down {
+  display: none;
+  margin-bottom: 20px;
+}
+.pop-browse__content .theme-top {
+  display: block;
+}
+
+._hide {
+  display: none;
+}
