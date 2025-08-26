@@ -39,7 +39,7 @@ const statuses = [
   "Готово",
 ];
 
-export const PopBrowse = ({ selected }) => {
+export const PopBrowse = () => {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const { _id } = useParams();
@@ -48,7 +48,7 @@ export const PopBrowse = ({ selected }) => {
   const [loading, setLoading] = useState(true);
   const [selectedStatus, setSelectedStatus] = useState("");
   const [editableTask, setEditableTask] = useState({
-    date: "",
+    date: null,
     description: "",
     status: "",
     title: "",
@@ -192,7 +192,6 @@ export const PopBrowse = ({ selected }) => {
                   <FormBrowseArea
                     name="description"
                     id="description"
-                    className="subttl"
                     placeholder="Введите описание задачи..."
                     value={editableTask.description || card.description}
                     onChange={handleInputChange}
@@ -202,15 +201,10 @@ export const PopBrowse = ({ selected }) => {
                 </FormBrowseBlock>
               </PopBrowseForm>
               <Calendar
+                readOnly={!isEditing}
+                isEditing={isEditing}
                 selected={editableTask.date || card.date}
-                onSelect={handleInputChange}
-                // name="date"
-                // selected={card?.date}
-                // value={editableTask.date || card.date}
-                // // setSelected={(date) => setTasks({ ...tasks, date })}
-                // onChange={handleInputChange}
-                // readOnly={!isEditing}
-                // $isEditing={isEditing}
+                setSelected={(date) => setEditableTask({ ...tasks, date })}
               />
             </PopBrowseWrap>
             <PopBrowseBtnBrowse>

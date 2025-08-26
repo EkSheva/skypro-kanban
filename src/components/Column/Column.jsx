@@ -4,8 +4,8 @@ import CardLoader from "../CardLoader/CardLoader";
 import { Cards, ColumnTitle, MainColumn, PTitle } from "./Column.styled";
 import { TasksContext } from "../../context/TasksContext";
 
-const Column = ({ title }) => {
-  const { tasks, loading } = useContext(TasksContext);
+const Column = ({ title, loading }) => {
+  const { tasks } = useContext(TasksContext);
   return (
     <MainColumn>
       <ColumnTitle>

@@ -33,7 +33,7 @@ const categories = [
   { name: "Copywriting", background: "#e9d4ff", color: "#9a48f1" },
 ];
 
-const PopNewCard = ({selected}) => {
+const PopNewCard = () => {
   const { tasks, setTasks } = useContext(TasksContext);
   const [loading, setLoading] = useState(false);
   // const [error, setError] = useState("");
@@ -52,8 +52,9 @@ const PopNewCard = ({selected}) => {
   const [errors, setErrors] = useState({
     title: "",
     description: "",
+    status: "",
     topic: "",
-    date: ""
+    date: "",
   });
 
   const handleChange = (e) => {
@@ -109,12 +110,11 @@ const PopNewCard = ({selected}) => {
                     autoFocus
                   />
                 </FormNewBlock>
-                <FormNewBlock>
+                <FormNewBlock onSubmit={(e) => e.preventDefault()}>
                   <Subttl>Описание задачи</Subttl>
                   <FormNewArea
                     type="text"
                     name="description"
-                    className="subttl"
                     id="textArea"
                     placeholder="Введите описание задачи..."
                     value={formData.text}
@@ -123,11 +123,8 @@ const PopNewCard = ({selected}) => {
                 </FormNewBlock>
               </PopNewCardForm>
               <Calendar
-                name="date"
-                selected={selected}
-                value={formData.date}
-                setSelected={(date) => setTasks({ ...formData, date })}
-                onChange={handleChange}
+                selected={formData.date}
+                setSelected={(date) => setFormData({ ...formData, date })}
               />
             </PopNewCardWrap>
             <Categories>

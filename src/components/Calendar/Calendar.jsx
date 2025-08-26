@@ -10,11 +10,7 @@ import {
   PopNewCardCalendar,
 } from "./Calendar.styled";
 
-import { useState } from "react";
-
-const Calendar = () => {
-  const [selected, setSelected] = useState();
-
+const Calendar = ({ selected, setSelected, readOnly }) => {
   let footer = (
     <CalendarPeriod>
       <CalendarDateEnd>Выберите срок исполнения</CalendarDateEnd>
@@ -43,6 +39,7 @@ const Calendar = () => {
         onSelect={setSelected}
         locale={ru}
         footer={footer}
+        disabled={readOnly}
       />
     </PopNewCardCalendar>
   );
