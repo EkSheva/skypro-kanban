@@ -121,8 +121,7 @@ export const PopBrowse = () => {
       console.log(card);
       setTasks(updateTasks);
       setIsEditing(false);
-      handleClose();
-      navigate("/");
+      handleClose(true);
     } catch (error) {
       setError("Ошибка при сохранении изменений:", error.message);
     } finally {
@@ -139,7 +138,6 @@ export const PopBrowse = () => {
       });
       setTasks(newTasks);
       handleClose();
-      navigate("/");
     } catch (error) {
       setError("Ошибка при удалении задачи:", error.message);
     } finally {

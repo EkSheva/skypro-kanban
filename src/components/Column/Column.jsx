@@ -5,9 +5,12 @@ import { Cards, ColumnTitle, MainColumn, PTitle } from "./Column.styled";
 import { TasksContext } from "../../context/TasksContext";
 import { CalendarDateEnd } from "../Calendar/Calendar.styled";
 
-const Column = ({ title, loading }) => {
+const Column = ({ title, loading, filteredTasks }) => {
   const { tasks } = useContext(TasksContext);
-  const filteredTasks = tasks.filter((card) => card.status === title);
+  filteredTasks = Array.isArray(tasks)
+    ? tasks.filter((card) => card.status === title)
+    : [];
+  // filteredTasks = tasks.filter((card) => card.status === title);
   return (
     <MainColumn>
       <ColumnTitle>

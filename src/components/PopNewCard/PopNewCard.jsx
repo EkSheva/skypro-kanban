@@ -79,7 +79,6 @@ const PopNewCard = () => {
       setError("Ошибка добавления задачи", error.message);
     } finally {
       setLoading(false);
-      
     }
   };
 
@@ -131,7 +130,7 @@ const PopNewCard = () => {
               />
             </PopNewCardWrap>
             <ErrorPB>{error}</ErrorPB>
-            <Categories> 
+            <Categories>
               <CategoriesPSubttl>Категория</CategoriesPSubttl>
               <CategoriesThemes>
                 {categories.map((category) => (
