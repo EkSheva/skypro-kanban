@@ -9,6 +9,7 @@ import {
   BtnBor,
   BtnBorA,
   BtnGroup,
+  ErrorPB,
   FormBrowseArea,
   FormBrowseBlock,
   Gray,
@@ -31,6 +32,7 @@ import { TasksContext } from "../../context/TasksContext";
 import { AuthContext } from "../../context/AuthContext";
 import { deleteTask, redactTask } from "../../services/api";
 
+
 const statuses = [
   "Нужно сделать",
   "Без статуса",
@@ -46,6 +48,7 @@ export const PopBrowse = () => {
   const { tasks, setTasks } = useContext(TasksContext);
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("");
   const [editableTask, setEditableTask] = useState({
     date: null,
@@ -121,7 +124,7 @@ export const PopBrowse = () => {
       handleClose();
       navigate("/");
     } catch (error) {
-      console.error("Ошибка при сохранении изменений:", error.message);
+      setError("Ошибка при сохранении изменений:", error.message);
     } finally {
       setLoading(false);
     }
@@ -138,7 +141,7 @@ export const PopBrowse = () => {
       handleClose();
       navigate("/");
     } catch (error) {
-      console.error("Ошибка при удалении задачи:", error.message);
+      setError("Ошибка при удалении задачи:", error.message);
     } finally {
       setLoading(false);
     }
@@ -207,6 +210,7 @@ export const PopBrowse = () => {
                 setSelected={(date) => setEditableTask({ ...tasks, date })}
               />
             </PopBrowseWrap>
+            <ErrorPB>{error}</ErrorPB>
             <PopBrowseBtnBrowse>
               {!isEditing && (
                 <BtnGroup>

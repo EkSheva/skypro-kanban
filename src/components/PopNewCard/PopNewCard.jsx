@@ -6,6 +6,7 @@ import {
   CategoriesTheme,
   CategoriesThemeP,
   CategoriesThemes,
+  ErrorPB,
   PopBrowseContainer,
   Subttl,
 } from "../PopBrowse/PopBrowse.styled";
@@ -36,7 +37,7 @@ const categories = [
 const PopNewCard = () => {
   const { tasks, setTasks } = useContext(TasksContext);
   const [loading, setLoading] = useState(false);
-  // const [error, setError] = useState("");
+  const [error, setError] = useState("");
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -64,6 +65,7 @@ const PopNewCard = () => {
       [name]: value,
     });
     setErrors({ ...errors, [name]: false });
+    setError("");
   };
 
   const addNewTask = async (e) => {
@@ -72,11 +74,12 @@ const PopNewCard = () => {
     try {
       const newTasks = await postTask({ token: user?.token, task: formData });
       setTasks(newTasks);
+      handleClose(true);
     } catch (error) {
-      console.error("Ошибка добавления задачи", error.message);
+      setError("Ошибка добавления задачи", error.message);
     } finally {
       setLoading(false);
-      handleClose(true);
+      
     }
   };
 
@@ -127,7 +130,8 @@ const PopNewCard = () => {
                 setSelected={(date) => setFormData({ ...formData, date })}
               />
             </PopNewCardWrap>
-            <Categories>
+            <ErrorPB>{error}</ErrorPB>
+            <Categories> 
               <CategoriesPSubttl>Категория</CategoriesPSubttl>
               <CategoriesThemes>
                 {categories.map((category) => (

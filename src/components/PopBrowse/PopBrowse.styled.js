@@ -363,4 +363,11 @@ export const White = styled.div`
   background: ${(props) => (props.$isActive ? "#94a6be" : "#ffffff")};
 `;
 
-
+export const ErrorPB = styled.p`
+font-weight: 600;
+  font-size: 14px;
+  color: rgba(248, 77, 77, 1);
+  letter-spacing: -1%;
+  text-align: left;
+  margin-bottom: 10px ;
+`
