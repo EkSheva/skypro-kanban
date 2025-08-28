@@ -39,4 +39,5 @@ font-size: 14px;
 
 export const CalendarDateEndSpan = styled.span`
 color: #000;
+padding-left: 4px;
 `;
