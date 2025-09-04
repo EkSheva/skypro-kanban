@@ -12,6 +12,7 @@ export const SBaseButton = styled.button`
   font-weight: 500;
   &:hover{
     background-color: #33399b;
+  }
   &:disabled{
     background-color:rgba(148, 166, 190, 1);
     cursor: not-allowed;
@@ -25,6 +26,5 @@ export const SBaseButton = styled.button`
     width: calc(100vw - 32px);
     height: 40px;
     border-radius: 4px;
-  }
   }
 `;
