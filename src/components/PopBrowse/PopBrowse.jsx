@@ -32,7 +32,6 @@ import { TasksContext } from "../../context/TasksContext";
 import { AuthContext } from "../../context/AuthContext";
 import { deleteTask, redactTask } from "../../services/api";
 
-
 const statuses = [
   "Нужно сделать",
   "Без статуса",
@@ -77,10 +76,10 @@ export const PopBrowse = () => {
   useEffect(() => {
     if (card) {
       setEditableTask({
-        date: "",
-        description: "",
+        date: card.date || "",
+        description: card.description || "",
         title: "",
-        topic: "",
+        topic: card.topic,
         status: "",
       });
     }
@@ -118,8 +117,7 @@ export const PopBrowse = () => {
         _id: card._id,
         task: editableTask,
       });
-      console.log(card);
-      setTasks(updateTasks);
+      setTasks(updateTasks.tasks);
       setIsEditing(false);
       handleClose(true);
     } catch (error) {
@@ -129,7 +127,8 @@ export const PopBrowse = () => {
     }
   };
 
-  const editTask = async () => {
+  const editTask = async (e) => {
+    e.preventDefault();
     setLoading(true);
     try {
       const newTasks = await deleteTask({
@@ -194,7 +193,7 @@ export const PopBrowse = () => {
                     name="description"
                     id="description"
                     placeholder="Введите описание задачи..."
-                    value={editableTask.description || card.description}
+                    value={editableTask.description}
                     onChange={handleInputChange}
                     readOnly={!isEditing}
                     $isEditing={isEditing}
@@ -204,7 +203,7 @@ export const PopBrowse = () => {
               <Calendar
                 readOnly={!isEditing}
                 isEditing={isEditing}
-                selected={editableTask.date || card.date}
+                selected={editableTask.date}
                 setSelected={(date) => setEditableTask({ ...tasks, date })}
               />
             </PopBrowseWrap>

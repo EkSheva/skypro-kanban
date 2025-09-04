@@ -20,10 +20,10 @@ const Main = () => {
       <SContainer>
         <MainBlock>
           <MainContent>
-             {defaultColumnTitles.map((title, index) => {
+            {defaultColumnTitles.map((title, index) => {
               const filteredTasks = Array.isArray(tasks)
                 ? tasks.filter((task) => task.status === title)
-                : []; 
+                : [];
 
               return (
                 <Column
@@ -34,14 +34,6 @@ const Main = () => {
                 />
               );
             })}
-            {/* {defaultColumnTitles.map((title, index) => (
-              <Column
-                key={index}
-                title={title}
-                tasks={tasks.filter((task) => task.status === title)}
-                loading={loading}
-              />
-            ))} */}
           </MainContent>
         </MainBlock>
       </SContainer>

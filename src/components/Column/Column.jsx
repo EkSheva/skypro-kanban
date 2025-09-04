@@ -10,7 +10,6 @@ const Column = ({ title, loading, filteredTasks }) => {
   filteredTasks = Array.isArray(tasks)
     ? tasks.filter((card) => card.status === title)
     : [];
-  // filteredTasks = tasks.filter((card) => card.status === title);
   return (
     <MainColumn>
       <ColumnTitle>
